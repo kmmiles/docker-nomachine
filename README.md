@@ -1,3 +1,3 @@
 # docker-nomachine
 
-NoMachine Docker image w/ MATE & Chrome
+NoMachine Docker image w/ MATE & Chrome 
