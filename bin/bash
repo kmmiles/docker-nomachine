@@ -2,4 +2,4 @@
 
 cd $(dirname $0)/..
 
-docker exec -it nomachine bash
+docker exec -it registry.gitlab.com/kmmiles/docker-nomachine bash

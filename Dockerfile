@@ -1,19 +1,21 @@
-FROM debian:stretch
+FROM debian:stretch-slim
+
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
       sudo \
       curl \
-      wget \
-      vim \
-      cups \
-      pulseaudio \
-      xterm \
+#      wget \
+#      cups \
+#      pulseaudio \
+#      xterm \
       mate-desktop-environment-core \
       fonts-liberation \
       libappindicator3-1 \
       lsb-release \
-      xdg-utils
+      xdg-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV NOMACHINE_PACKAGE_NAME nomachine_6.1.6_9_amd64.deb
 ENV NOMACHINE_MD5 00b7695404b798034f6a387cf62aba84
@@ -29,11 +31,6 @@ RUN curl -fSL "http://download.nomachine.com/download/6.1/Linux/${NOMACHINE_PACK
     echo 'nomachine:nomachine' | chpasswd && \
     adduser nomachine sudo && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-RUN curl -fSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb && \
-    dpkg -i chrome.deb && \
-#    apt fix-broken install && \
-    rm -f chrome.deb
 
 ADD nxserver.sh /
 

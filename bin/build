@@ -1,4 +1,10 @@
 #!/bin/bash
 
 cd $(dirname $0)/..
-docker build -t nomachine .
+
+docker build \
+  -t registry.gitlab.com/kmmiles/docker-nomachine:6.1.6_9 \
+  -t registry.gitlab.com/kmmiles/docker-nomachine:6 \
+  -t registry.gitlab.com/kmmiles/docker-nomachine:latest \
+  -t docker-nomachine \
+  .
